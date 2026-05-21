@@ -1,0 +1,6 @@
+---
+- name: My Project Playbook
+  hosts: localhost
+  connection: local
+  roles:
+    - common

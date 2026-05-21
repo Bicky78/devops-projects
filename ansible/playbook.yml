@@ -1,0 +1,5 @@
+---
+- name: My First Project
+  hosts: aws-ec2
+  roles:
+    - common

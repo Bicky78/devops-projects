@@ -1,0 +1,9 @@
+- name: Delete EC2 instances
+  hosts: delete-ec2
+  remote_user: ubuntu
+  become: true
+  tasks:
+    - name: Delete EC2 instances
+      ansible.builtin.command: /sbin/shutdown -t now
+      when:
+        ansible_facts['os_family'] == 'RedHat'

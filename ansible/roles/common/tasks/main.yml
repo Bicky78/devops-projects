@@ -1,0 +1,14 @@
+---
+- name: Execute Uptime Command
+  command: uptime
+  register: uptime_result
+
+- debug:
+    var: uptime_result.stdout_lines
+
+- name: Check OS release
+  command: cat /etc/os-release
+  register: os_result
+
+- debug:
+    msg: "OS release version is {{ os_result.stdout_lines }}"

@@ -1,0 +1,21 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for common
+- name: Create an EC2 instance with public IP
+  amazon.aws.ec2_instance:
+    name: "{{ item.name }}"
+    key_name: "mumbai-key"
+    vpc_subnet_id: subnet-0f34f0887a2f8410f
+    instance_type: t3.micro
+    security_group: sg-089486a9f36759b93
+    aws_access_key: "{{ access_key_id }}"
+    aws_secret_key: "{{ secret_access_key }}"
+    region: ap-south-1
+    network_interfaces:
+      - assign_public_ip: true
+    image_id: "{{ item.image_id }}"
+  
+  loop:
+    - { image_id: 'ami-09ed39e30153c3bf9', name: 'amazon-linux-2023' }
+    - { image_id: 'ami-07a00cf47dbbc844c', name: 'ubuntu-22.04-01' }
+    - { image_id: 'ami-07a00cf47dbbc844c', name: 'ubuntu-24.04-02' }
